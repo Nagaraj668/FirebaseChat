@@ -33,6 +33,15 @@ messagesRef.on('child_added', function(data) {
     addMessageElement(data.key, data.val());
 });
 
+messagesRef.on('child_removed', function(data) {
+    updateUI(data.key);
+});
+
+function updateUI(key) {
+
+}
+
+
 function addMessageElement(key, data) {
     //var e = key;
     var element = '<li class="collection-item avatar">' +

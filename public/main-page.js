@@ -47,5 +47,5 @@ function addMessageElement(key, data) {
 
 function deleteElement(data) {
     console.log(data);
-    messagesRef.child(data).$remove();
+    messagesRef.child(data).remove();
 }

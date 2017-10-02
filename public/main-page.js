@@ -39,7 +39,23 @@ function addMessageElement(key, data) {
         '<img src= "' + data.photoURL + '" alt= "" class="circle" >' +
         '<span class="title">' + data.sender + '</span>' +
         '<p>' + data.message
-    '</p>' +
+    '</p>' + '<p>' + data.message
+    '</p>' + '<button class="btn waves-effect waves-light" type="button" name="action" onclick="deleteElement(data.val);">send</button >' +
         '</li>';
     $('#collection').prepend(element);
+}
+
+function deleteElement(data) {
+    console.log(data);
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+
+
+    var imagesRef = storageRef.child(data);
+    imagesRef.delete().then(function () {
+        // File deleted successfully
+    }).catch(function (error) {
+        // Uh-oh, an error occurred!
+    });
+
 }

@@ -38,13 +38,13 @@ messagesRef.on('child_removed', function(data) {
 });
 
 function updateUI(key) {
-
+    $('#' + key).remove();
 }
 
 
 function addMessageElement(key, data) {
     //var e = key;
-    var element = '<li class="collection-item avatar">' +
+    var element = '<li class="collection-item avatar" id=\'' + key + '\'>' +
         '<img src= "' + data.photoURL + '" alt= "" class="circle" >' +
         '<span class="title">' + data.sender + '</span>' +
         '<p>' + data.message + ' <button class="btn"  onclick= ' + '"deleteElement(\'' + key + '\');"' + ' > delete </button>' +

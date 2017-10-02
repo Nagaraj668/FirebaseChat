@@ -31,15 +31,15 @@ var messagesRef = firebase.database().ref('messages');
 
 
 messagesRef.on('child_added', function (data) {
-    addMessageElement(data.key, data.val(), data);
+    addMessageElement(data.key, data.val());
 });
 
-function addMessageElement(key, data, dataf) {
+function addMessageElement(key, data) {
     //var e = key;
     var element = '<li class="collection-item avatar">' +
         '<img src= "' + data.photoURL + '" alt= "" class="circle" >' +
         '<span class="title">' + data.sender + '</span>' +
-        '<p>' + data.message + ' <button class="btn"  onclick= ' + '"deleteElement(' + dataf + ');"' + ' > delete </button>' +
+        '<p>' + data.message + ' <button class="btn"  onclick= ' + '"deleteElement(' + key + ');"' + ' > delete </button>' +
         '</p>'
     '</li>';
     $('#collection').prepend(element);
@@ -47,7 +47,5 @@ function addMessageElement(key, data, dataf) {
 
 function deleteElement(data) {
     console.log(data);
-    messagesRef.on('child_removed', function (data) {
-        messagesRef.child(data.key).$remove();
-    });
+    messagesRef.child(data).$remove();
 }
